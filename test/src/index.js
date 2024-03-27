@@ -1,15 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Library from "./chapter_03/Library";
+import Clock from "./chapter_04/Clock";
+import Hello from "./Hello";
+const root = ReactDOM.createRoot(
+	document.getElementById("root")
 );
+setInterval(() => {
+	root.render(
+		<React.StrictMode>
+			<Hello />
+			<Clock />
+			<Library />
+		</React.StrictMode>
+	);
+});
+/*
+root.render(
+	<React.StrictMode>
+		<Clock />
+		<Library />
+	</React.StrictMode>
+);
+*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
