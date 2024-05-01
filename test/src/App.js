@@ -3,17 +3,17 @@ import "./App.css";
 import Welcome from "./chapter_05/Welcome";
 import CommentList from "./chapter_05/CommentList";
 import NotificationList from "./chapter_06/NotificationList";
-import Counter from "./chapter_07/Counter";
 
 import FocusButton from "./chapter_07/FocusButton";
 import MeasureEx from "./chapter_07/MeasureEx";
+import Counter from "./chapter_07/Counter";
 
 function App() {
 	return (
 		<div className="App">
 			<CommentList />
-			<NotificationList />
 			<Counter />
+			<NotificationList />
 			<FocusButton />
 			<MeasureEx />
 

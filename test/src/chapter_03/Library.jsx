@@ -10,3 +10,16 @@ export default function Library(props) {
 		</div>
 	);
 }
+/*
+JSX를 사용한 코드
+const element =(
+	<h1 className="greeting">
+		Hello,world!
+	</h1>
+)
+JSX를 사용하지 않은 코드
+const element = React.createElement(
+	'h1',
+	{className: 'greeting'},
+	'Hello, world!')
+*/

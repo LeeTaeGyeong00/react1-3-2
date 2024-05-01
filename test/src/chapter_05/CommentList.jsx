@@ -2,6 +2,7 @@ import React from "react";
 import Comment from "./Comment";
 import Welcome from "./Welcome";
 
+// Commnet 데이터를 별도의 객체로 분리했을때
 // const comments = [
 // 	{
 // 		name: "이인제",
@@ -34,9 +35,9 @@ import Welcome from "./Welcome";
 export default function CommentList(props) {
 	return (
 		<>
-			<Comment name="홍길동" />
-			<Comment name="홍길동1" />
-			<Comment name="홍길동2" />
+			<Comment name="홍길동" Comment={"ㅎㅇㅎㅇ1"} />
+			<Comment name="홍길동1" Comment={"ㅎㅇㅎㅇ1"} />
+			<Comment name="홍길동2" Comment={"ㅎㅇㅎㅇ1"} />
 		</>
 	);
 }
