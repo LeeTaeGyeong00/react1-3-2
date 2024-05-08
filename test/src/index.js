@@ -9,7 +9,8 @@ import Hello from "./Hello";
 import Welcome from "./chapter_05/Welcome";
 import CommentList from "./chapter_05/CommentList";
 import NotificationList from "./chapter_06/NotificationList";
-import Handling from "./chapter_07/Handling";
+// import Handling from "./chapter_07/Handling";
+import Toggle2 from "./chapter_08/Toggle2";
 import Change from "./chapter_07/Change";
 
 // const root = ReactDOM.createRoot(
@@ -37,8 +38,7 @@ root.render(
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Handling />
-		<Change />
+		<Toggle2 />
 	</React.StrictMode>,
 	document.getElementById("root")
 );

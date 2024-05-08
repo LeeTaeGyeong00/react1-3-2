@@ -7,6 +7,7 @@ import NotificationList from "./chapter_06/NotificationList";
 import FocusButton from "./chapter_07/FocusButton";
 import MeasureEx from "./chapter_07/MeasureEx";
 import Counter from "./chapter_07/Counter";
+import Toggle2 from "./chapter_08/Toggle2";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 			<NotificationList />
 			<FocusButton />
 			<MeasureEx />
+			<Toggle2 />
 
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
