@@ -41,7 +41,7 @@ function SignUp(props) {
                         checked={haveBreakfest}
                         onChange={(e) => {
                             setHaveBreakfest(e.target.checked);
-                        }}
+                        }}/>
             </label>
             <button type="submit">제출</button>
         </form>

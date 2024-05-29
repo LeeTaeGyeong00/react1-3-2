@@ -1,5 +1,19 @@
 # 이태석 202230229
 
+# 5월 29일 강의
+### file input 태그
+- 태그는 그 값이 읽기 전용이기 떄문에 리엑트에서는 비제어 컴포넌트가 됩니다
+### Input Null Value
+- 제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력 값을 바꿀 수 없습니다
+- 만약 value prop은 넣되 자유롭게 입력 할 수 있게 만들고 싶다면 값이 undefined또는 null을 넣어주면 됩니다.
+
+```jsx
+ReactDOM.render(<input value="hi"/>, rootNode);
+setTimeout(function(){
+	ReactDOM.render(<input value={null}/>, rootNode);
+},1000);
+```
+
 # 5월 22일 강의
 ## ch10 리스트와 키
 #### 10.4 리스트의 키에 대해 알아보기

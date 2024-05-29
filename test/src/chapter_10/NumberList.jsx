@@ -24,3 +24,4 @@ export default function NumberList() {
 	));
 	return <ul>{listItems}</ul>;
 }
+
