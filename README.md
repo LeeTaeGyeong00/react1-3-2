@@ -1,28 +1,131 @@
 # 이태석 202230229
 
+# 6월 05일 강의
+
+## STATE 끌어 올리기
+
+### 12.1 shared state
+
+- shared state는 state의 공유를 의미합니다
+- 같은 부모 컴포넌트의 state를 자식 컴포넌트가 공유해서 사용하는 것 입니다.
+- 다음 그림은 부모 컴포넌트가 섭씨 온도의 state를 갖고있고, 이것을 컴포넌트 C와 컴포넌트 F가 공유해서 사용하는 것을 보여줍니다.
+
+## ch13 합성 VS 상속
+
+### 13.1 합성에 대해 알아보기
+
+- 합성(Composition)은 여러개의 컴포넌트를 합쳐서 새로운 컴포넌트를 만드는 것입니다
+
+#### [1] containment(담다, 포함하다, 격리하다)
+
+- 특정 컴포넌트가 하위 컴포넌트를 포함하는 형태의 합성 방법입니다.
+- 컴포넌트에 따라서는 어떤 자식 엘리먼트가 들어올 지 미리 예상 할 수 없는 경우가 있습니다.
+- 범용적인 '박스' 역할을 하는 sidevar혹은 Dialog와 같은 컴포넌트에서 특히 자주 볼 수 있스니다
+- 이런 컴포넌트에서는 children prop을 사용하여 자식 엘리먼트를 출력하여 그대로 전달 하는 것이 좋습니다
+- 이때 children prop은 컴포넌트의 prps에 기본적으로 들어있는 children 속성을 사용합니다.
+- 다음과 같이 props.children을 사용하면 해당 컴포넌트의 하위 컴포넌트가 모두 children으로 들어오게 됩니다.
+
+```jsx
+function FancyBorder(props) {
+	return (
+		<div
+			className={"FancyBoarder FancyBorder-" + props.color}
+		>
+			{props.children}
+		</div>
+	);
+}
+```
+
+- children은 다음 구조에서 세번쨰 들어가는 파라미터입니다.
+- 파라미터가 배열로 되어있는 이유는 여러개의 하위 컴포넌트를 가질수 있기 때문입니다.
+- children이 배열로 되어있는 것은 여러개의 하위 컴포넌트를 위한 것입니다.
+
+```jsx
+React.createElement(type, [props], [...children]);
+```
+
+- 리액트에서는 props.children을 통해 하위 컴포넌트를 하나로 모아서 제공해 줍니다.
+- 만일 여러개의 children집합이 필요할 경우는 별도로 props를 정의해서 각각 원하는 컴포넌트를 넣어줍니다.
+- 예와 같이 SplitPane은 화면을 왼쪽과 오른쪽으로 분할 해 주고, App에서는 SplitPane을 사용해서 left, right 두개의 props를 정의 하고 있습니다
+- 즉 app에서 left, right를 props를 받아서 화면을 분할 하게 됩니다. 이처럼 여러개의 children집합이 필요한 경우 별도의 props를 정의 해서 사용합니다.
+
+```jsx
+function SplitPane(props) {
+	return (
+		<div className="SplitPane">
+			<div className="SplitPane-left">{props.left}</div>
+			<div className="SplitPane-right">{props.right}</div>
+		</div>
+	);
+}
+```
+
+```jsx
+function App(props) {
+	return <SplitPane left={<Contacts />} right={<Chat />} />;
+}
+```
+
+#### [2] Specialization(특수화, 전문화)
+
+- 웰컴 다이얼로그는 다이얼로그의 특별한 케이스입니다.
+- 범용적인 개념을 구별이 되게 구체화하는 것을 특수화라고 합니다.
+- 리액트에서는 합성을 사용하여 특수화를 구현합니다.
+- 다음 예와 같이 특수화하는 범용적으로 쓸수 있는 컴포넌트를 만들어 놓고 이를 특수한 목적으로 사용하는 합성 방식입니다.
+
+```jsx
+function Dialog(props) {
+	return (
+		<FancyBorder color="blue">
+			<h1 className="Dialog-title">{props.title}</h1>
+			<p className="Dialog-message">{props.message}</p>
+		</FancyBorder>
+	);
+}
+
+function WelcomeDialog(props) {
+	return (
+		<Dialog
+			title="어서오세요"
+			message="사이트에 방문하신 것을 환영합니다."
+		/>
+	);
+}
+```
+
 # 5월 29일 강의
+
 ### file input 태그
+
 - 태그는 그 값이 읽기 전용이기 떄문에 리엑트에서는 비제어 컴포넌트가 됩니다
+
 ### Input Null Value
+
 - 제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력 값을 바꿀 수 없습니다
 - 만약 value prop은 넣되 자유롭게 입력 할 수 있게 만들고 싶다면 값이 undefined또는 null을 넣어주면 됩니다.
 
 ```jsx
-ReactDOM.render(<input value="hi"/>, rootNode);
-setTimeout(function(){
-	ReactDOM.render(<input value={null}/>, rootNode);
-},1000);
+ReactDOM.render(<input value="hi" />, rootNode);
+setTimeout(function () {
+	ReactDOM.render(<input value={null} />, rootNode);
+}, 1000);
 ```
 
 # 5월 22일 강의
+
 ## ch10 리스트와 키
+
 #### 10.4 리스트의 키에 대해 알아보기
+
 - 리스트에서의 키는 "리스트에서 아이템으로 구별하기 위한 고유한 문자열"입니다
 - 이키는 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해 사용
 - 키는 같은 리스트에 있는 엘리언트 사이엥서만 고유한 값이면 됩니다
 
 ## ch11 폼
+
 ### 폼이란 무엇인가?
+
 - 폼은 일반적으로 사용자부터 입력을 받기 위한 양식에서 많이 사용됩니다.
 
 ## 5월 8일 강의
@@ -42,15 +145,20 @@ setTimeout(function(){
 - 두방법 모두 첫번째 매개변수는 id이고 두번째 매개변수로 event가 전달됩니다.
 - 첫번째 코드는 명시적으로 event를 매개변수로 넣어주었고, 두 번째 코드는 id 이후 두번째 매개변수로 event가 자동 전달됨
 
-
 ### ch09 조건부 렌더링
+
 #### 9.3 인라인 조건
+
 - 필요한 곳에 조건문을 직접 넣어 사용하는 방법
+
 1. 인라인 if
+
 - if 문을 직접 사용하지 않고 동일한 효과를 내기 위해 && 논리 연산자를 사용
 - && 는 and 연자로 모든조건이 참일때만 참이 됩니다.
 - 첫번째 조건이 거짓이면 두번째 조건을 판단할 필요 X 단축 평가
+
 2. 인라인 if-else
+
 - 삼항 연산자 사용
 - 문자열이나 엘리먼트를 넣어서 사용가능
 
